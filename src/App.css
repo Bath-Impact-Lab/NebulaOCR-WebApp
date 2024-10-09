@@ -1,0 +1,20 @@
+/* src/App.css */
+
+.App {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+button {
+  margin: 5px;
+}
+
+label {
+  margin-right: 10px;
+}
+
+textarea {
+  resize: vertical;
+}
