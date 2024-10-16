@@ -34,7 +34,8 @@ const PDFUploader: React.FC<PDFUploaderProps> = ({ setPdfId, setPages }) => {
 
         setUploading(true);
         try {
-            const response = await axios.post<PDFUploadResponse>('http://localhost:8080/upload_pdf', formData);
+            const apiURL = 'https://nebulaocr-api.onrender.com';
+            const response = await axios.post<PDFUploadResponse>(apiURL+'/upload_pdf', formData);
             setPdfId(response.data.pdf_id);
             setPages(response.data.pages);
             alert("PDF uploaded successfully!");

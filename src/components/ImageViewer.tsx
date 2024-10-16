@@ -105,7 +105,8 @@ const ImageViewer: React.FC<ImageViewerProps> = ({
         };
 
         try {
-            const response = await axios.post<{ text: string }>('http://localhost:8080/perform_ocr', ocrRequest);
+            const apiURL = 'https://nebulaocr-api.onrender.com';
+            const response = await axios.post<{ text: string }>(apiURL + '/perform_ocr', ocrRequest);
             console.log(response.data);
             onSelectRegion(response.data.text);
         } catch (error) {

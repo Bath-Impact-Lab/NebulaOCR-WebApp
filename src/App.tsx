@@ -29,7 +29,7 @@ const App: React.FC = () => {
 
     return (
         <div className="App">
-            <h1>Ohh sea arr you kidding!</h1>
+            <h1>NebulaOCR</h1>
             {!pdfId ? (
                 <PDFUploader setPdfId={setPdfId} setPages={setPages} />
             ) : (
