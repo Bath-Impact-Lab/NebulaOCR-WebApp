@@ -17,10 +17,10 @@ interface ImageViewerProps {
     pdfId: string;
     pages: number;
     selectedPage: number;
-    setSelectedPage: (page: number) => void;
+    setSelectedPage: React.Dispatch<React.SetStateAction<number>>;
     onSelectRegion: (text: string) => void;
     preprocessOptions: PreprocessOptions;
-    setPreprocessOptions: (options: PreprocessOptions) => void;
+    setPreprocessOptions: React.Dispatch<React.SetStateAction<PreprocessOptions>>;
 }
 
 const ImageViewer: React.FC<ImageViewerProps> = ({
@@ -43,7 +43,6 @@ const ImageViewer: React.FC<ImageViewerProps> = ({
         y: 45,
     });
     const [completedCrop, setCompletedCrop] = useState<PercentCrop | null>(null);
-    const [imageRef, setImageRef] = useState<HTMLImageElement | null>(null);
     const [offset, setOffset] = useState<{ x: number; y: number }>({x: 0, y: 0});
     const containerRef = useRef<HTMLDivElement>(null);
 
@@ -169,7 +168,7 @@ const ImageViewer: React.FC<ImageViewerProps> = ({
                         onComplete={handleCropComplete}
 
                     >
-                        <img src={imageUrl} onLoad={(img) => setImageRef(img)} style={getImageStyle()}/>
+                        <img src={imageUrl} style={getImageStyle()}/>
                     </ReactCrop>
             )}
 
