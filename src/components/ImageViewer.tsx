@@ -62,7 +62,8 @@ const ImageViewer: React.FC<ImageViewerProps> = ({
     const fetchPageImage = async () => {
         setLoading(true);
         try {
-            const response = await axios.get(`http://localhost:8080/get_page/${pdfId}/${selectedPage}`, {
+            const apiURL = 'https://nebulaocr-core-api.onrender.com';
+            const response = await axios.get(apiURL+`/get_page/${pdfId}/${selectedPage}`, {
                 responseType: 'blob'
             });
             const url = URL.createObjectURL(response.data);
