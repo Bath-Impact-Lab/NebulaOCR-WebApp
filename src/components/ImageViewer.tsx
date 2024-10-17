@@ -1,6 +1,6 @@
 // src/components/ImageViewer.tsx
 
-import React, {useState, useEffect, useRef, useCallback} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import ReactCrop, {Crop, PercentCrop, PixelCrop} from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
@@ -44,7 +44,6 @@ const ImageViewer: React.FC<ImageViewerProps> = ({
     });
     const [completedCrop, setCompletedCrop] = useState<PercentCrop | null>(null);
     const [offset, setOffset] = useState<{ x: number; y: number }>({x: 0, y: 0});
-    const containerRef = useRef<HTMLDivElement>(null);
 
 
     useEffect(() => {
@@ -81,7 +80,7 @@ const ImageViewer: React.FC<ImageViewerProps> = ({
     };
 
     const handlePerformOCR = async () => {
-        if (!completedCrop || !imageRef) {
+        if (!completedCrop) {
             alert("Please select a region for OCR.");
             return;
         }
