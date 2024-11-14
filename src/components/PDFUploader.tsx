@@ -64,7 +64,7 @@ const PDFUploader: React.FC<PDFUploaderProps> = ({ setPdfId, setPages }) => {
                         disabled={uploading}
                         startIcon={uploading && <CircularProgress size={20} />}
                     >
-                        {uploading ? "Uploading..." : "Upload PDF"}
+                        {uploading ? "Uploading..." : "Proces"}
                     </Button>
                 </Box>
             </Box>
