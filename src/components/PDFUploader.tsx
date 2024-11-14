@@ -53,8 +53,8 @@ const PDFUploader: React.FC<PDFUploaderProps> = ({ setPdfId, setPages }) => {
                 </Typography>
                 <Input
                     type="file"
-                    accept="application/pdf"
                     onChange={handleFileChange}
+                    inputProps={{ accept: 'application/pdf' }}
                 />
                 <Box my={2}>
                     <Button
