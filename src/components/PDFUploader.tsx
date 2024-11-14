@@ -1,7 +1,6 @@
-// src/components/PDFUploader.tsx
-
 import React, { useState, ChangeEvent } from 'react';
 import axios from 'axios';
+import { Button, CircularProgress, Input, Container, Box, Typography } from '@mui/material';
 
 interface PDFUploadResponse {
     pdf_id: string;
@@ -35,7 +34,7 @@ const PDFUploader: React.FC<PDFUploaderProps> = ({ setPdfId, setPages }) => {
         setUploading(true);
         try {
             const apiURL = 'https://nebula-api.hivebrain.ai';
-            const response = await axios.post<PDFUploadResponse>(apiURL+'/upload_pdf', formData);
+            const response = await axios.post<PDFUploadResponse>(`${apiURL}/upload_pdf`, formData);
             setPdfId(response.data.pdf_id);
             setPages(response.data.pages);
             alert("PDF uploaded successfully!");
@@ -48,12 +47,29 @@ const PDFUploader: React.FC<PDFUploaderProps> = ({ setPdfId, setPages }) => {
     };
 
     return (
-        <div>
-            <input type="file" accept="application/pdf" onChange={handleFileChange} />
-            <button onClick={handleUpload} disabled={uploading}>
-                {uploading ? "Uploading..." : "Upload PDF"}
-            </button>
-        </div>
+        <Container>
+            <Box my={4} textAlign="center">
+                <Typography variant="h4" gutterBottom>
+                    Upload PDF
+                </Typography>
+                <Input
+                    type="file"
+                    accept="application/pdf"
+                    onChange={handleFileChange}
+                />
+                <Box my={2}>
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={handleUpload}
+                        disabled={uploading}
+                        startIcon={uploading && <CircularProgress size={20} />}
+                    >
+                        {uploading ? "Uploading..." : "Upload PDF"}
+                    </Button>
+                </Box>
+            </Box>
+        </Container>
     );
 };
 
