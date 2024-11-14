@@ -37,7 +37,6 @@ const PDFUploader: React.FC<PDFUploaderProps> = ({ setPdfId, setPages }) => {
             const response = await axios.post<PDFUploadResponse>(`${apiURL}/upload_pdf`, formData);
             setPdfId(response.data.pdf_id);
             setPages(response.data.pages);
-            alert("PDF uploaded successfully!");
         } catch (error) {
             console.error(error);
             alert("Failed to upload PDF.");
