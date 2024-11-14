@@ -5,6 +5,12 @@ import PDFUploader from './components/PDFUploader';
 import ImageViewer from './components/ImageViewer';
 import OCRResult from './components/OCRResult';
 import './App.css';
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+import Container from '@mui/material/Container';
+
 
 interface PreprocessOptions {
     grayscale: boolean;
@@ -28,7 +34,7 @@ const App: React.FC = () => {
     });
 
     return (
-        <div className="App">
+        <Container className="App" maxWidth="sm">
             <h1>NebulaOCR</h1>
             {!pdfId ? (
                 <PDFUploader setPdfId={setPdfId} setPages={setPages} />
@@ -46,7 +52,7 @@ const App: React.FC = () => {
                     <OCRResult text={ocrText} />
                 </>
             )}
-        </div>
+        </Container>
     );
 };
 
