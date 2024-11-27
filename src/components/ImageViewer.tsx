@@ -62,7 +62,7 @@ const ImageViewer: React.FC<ImageViewerProps> = ({
     const fetchPageImage = async () => {
         setLoading(true);
         try {
-            const apiURL = 'https://nebula-api.hivebrain.ai';
+            const apiURL = process.env.REACT_APP_API_URL;
             const response = await axios.get(apiURL+`/get_page/${pdfId}/${selectedPage}`, {
                 responseType: 'blob'
             });
@@ -104,7 +104,7 @@ const ImageViewer: React.FC<ImageViewerProps> = ({
         };
 
         try {
-            const apiURL = 'https://nebula-api.hivebrain.ai';
+            const apiURL = process.env.REACT_APP_API_URL;
             const response = await axios.post<{ text: string }>(apiURL + '/perform_ocr', ocrRequest);
             console.log(response.data);
             onSelectRegion(response.data.text);

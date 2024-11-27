@@ -2,6 +2,7 @@ import React, { useState, ChangeEvent } from 'react';
 import axios from 'axios';
 import { Button, CircularProgress, Input, Container, Box, Typography } from '@mui/material';
 
+
 interface PDFUploadResponse {
     pdf_id: string;
     pages: number;
@@ -33,7 +34,7 @@ const PDFUploader: React.FC<PDFUploaderProps> = ({ setPdfId, setPages }) => {
 
         setUploading(true);
         try {
-            const apiURL = 'https://nebula-api.hivebrain.ai';
+            const apiURL = process.env.REACT_APP_API_URL;
             const response = await axios.post<PDFUploadResponse>(`${apiURL}/upload_pdf`, formData);
             setPdfId(response.data.pdf_id);
             setPages(response.data.pages);
