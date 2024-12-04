@@ -4,7 +4,7 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import ReactCrop, {Crop, PercentCrop, PixelCrop} from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
-import { Button, CircularProgress, Input, Container, Box, Typography } from '@mui/material';
+import { Button, Box } from '@mui/material';
 
 interface PreprocessOptions {
     grayscale: boolean;
