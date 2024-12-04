@@ -35,7 +35,7 @@ const App: React.FC = () => {
 
     return (
         <Container className="App" maxWidth="sm">
-            <h1>NebulaOCR <small>v0.7</small></h1>
+            <h1>NebulaOCR <small>v0.8</small></h1>
             {!pdfId ? (
                 <PDFUploader setPdfId={setPdfId} setPages={setPages} />
             ) : (
