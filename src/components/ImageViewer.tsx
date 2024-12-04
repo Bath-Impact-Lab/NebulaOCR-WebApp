@@ -138,16 +138,18 @@ const ImageViewer: React.FC<ImageViewerProps> = ({
 
     return (
         <div>
-            <div>
-                <button onClick={() => setSelectedPage(prev => Math.max(prev - 1, 1))} disabled={selectedPage <= 1}>
-                    Previous
-                </button>
-                <span> Page {selectedPage} of {pages} </span>
-                <button onClick={() => setSelectedPage(prev => Math.min(prev + 1, pages))}
-                        disabled={selectedPage >= pages}>
-                    Next
-                </button>
-            </div>
+            {pages > 1 && (
+                <div id="page_count" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '20px' }}>
+                    <button onClick={() => setSelectedPage(prev => Math.max(prev - 1, 1))} disabled={selectedPage <= 1}>
+                        Previous
+                    </button>
+                    <span>&nbsp;Page {selectedPage} of {pages}&nbsp;</span>
+                    <button onClick={() => setSelectedPage(prev => Math.min(prev + 1, pages))}
+                            disabled={selectedPage >= pages}>
+                        Next
+                    </button>
+                </div>
+            )}
 
             {/* Zoom and Pan Controls */}
             <div style={{ marginBottom: '10px', display: 'flex', alignItems: 'center', gap: '10px' }}>

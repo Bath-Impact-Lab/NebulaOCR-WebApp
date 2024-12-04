@@ -19,7 +19,7 @@ const OCRResult: React.FC<OCRResultProps> = ({ text }) => {
     return (
         <div>
             <h3>OCR Result</h3>
-            <textarea value={text} readOnly rows={10} style={{ width: '100%' }} />
+            <textarea value={text} readOnly rows={10} style={{ width: '450px' }} />
             <button onClick={handleCopy} disabled={!text}>
                 Copy Text
             </button>
