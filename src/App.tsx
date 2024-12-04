@@ -1,5 +1,4 @@
 // src/App.tsx
-
 import React, { useState } from 'react';
 import PDFUploader from './components/PDFUploader';
 import ImageViewer from './components/ImageViewer';
@@ -10,7 +9,6 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import Container from '@mui/material/Container';
-
 
 interface PreprocessOptions {
     grayscale: boolean;
@@ -39,18 +37,22 @@ const App: React.FC = () => {
             {!pdfId ? (
                 <PDFUploader setPdfId={setPdfId} setPages={setPages} />
             ) : (
-                <>
-                    <ImageViewer
-                        pdfId={pdfId}
-                        pages={pages}
-                        selectedPage={selectedPage}
-                        setSelectedPage={setSelectedPage}
-                        onSelectRegion={setOcrText}
-                        preprocessOptions={preprocessOptions}
-                        setPreprocessOptions={setPreprocessOptions}
-                    />
-                    <OCRResult text={ocrText} />
-                </>
+                <div className="content">
+                    <div className="image-viewer">
+                        <ImageViewer
+                            pdfId={pdfId}
+                            pages={pages}
+                            selectedPage={selectedPage}
+                            setSelectedPage={setSelectedPage}
+                            onSelectRegion={setOcrText}
+                            preprocessOptions={preprocessOptions}
+                            setPreprocessOptions={setPreprocessOptions}
+                        />
+                    </div>
+                    <div className="ocr-result">
+                        <OCRResult text={ocrText} />
+                    </div>
+                </div>
             )}
         </Container>
     );

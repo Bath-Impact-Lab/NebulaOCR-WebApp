@@ -4,6 +4,7 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import ReactCrop, {Crop, PercentCrop, PixelCrop} from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
+import { Button, CircularProgress, Input, Container, Box, Typography } from '@mui/material';
 
 interface PreprocessOptions {
     grayscale: boolean;
@@ -173,6 +174,16 @@ const ImageViewer: React.FC<ImageViewerProps> = ({
             )}
 
             <div>
+                <Box display="flex" justifyContent="center" marginTop="20px">
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={handlePerformOCR}
+                        disabled={!completedCrop}
+                    >
+                        Perform OCR on Selected Region
+                    </Button>
+                </Box>
                 <h3>Preprocessing Options</h3>
                 <label>
                     <input
@@ -220,9 +231,7 @@ const ImageViewer: React.FC<ImageViewerProps> = ({
                     Contrast Enhancement
                 </label>
             </div>
-            <button onClick={handlePerformOCR} disabled={!completedCrop}>
-                Perform OCR on Selected Region
-            </button>
+
         </div>
     );
 };
