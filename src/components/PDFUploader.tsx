@@ -17,9 +17,10 @@ const PDFUploader: React.FC<PDFUploaderProps> = ({ setPdfId, setPages }) => {
     const [file, setFile] = useState<File | null>(null);
     const [uploading, setUploading] = useState<boolean>(false);
 
-    const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const handleFileChange = async (e: ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files.length > 0) {
-            setFile(e.target.files[0]);
+            const selectedFile = e.target.files[0];
+            await uploadFile(selectedFile); // Directly call the upload function
         }
     };
 
@@ -69,19 +70,28 @@ const PDFUploader: React.FC<PDFUploaderProps> = ({ setPdfId, setPages }) => {
     return (
         <Container>
             <Box my={4} textAlign="center">
-                <Typography variant="h4" gutterBottom>
-                    Select PDF
-                </Typography>
                 <Input
                     type="file"
                     onChange={handleFileChange}
                     inputProps={{ accept: 'application/pdf' }}
                 />
+                <Typography variant="h5" sx={{ p: 3, margin: '10px', marginBottom: '10px' }}>
+                    - or -
+                </Typography>
                 <Paper
                     onDragOver={handleDragOver}
                     onDrop={handleDrop}
-                    sx={{ p: 3, border: '1px dashed grey', margin: '10px' }}
+                    sx={{
+                        p: 3,
+                        border: '1px dashed grey',
+                        margin: '10px',
+                        minHeight: '150px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                    }}
                 >
+
                     Drag & drop here!
                 </Paper>
                 <Box my={2}>
@@ -92,7 +102,7 @@ const PDFUploader: React.FC<PDFUploaderProps> = ({ setPdfId, setPages }) => {
                         disabled={uploading}
                         startIcon={uploading && <CircularProgress size={20} />}
                     >
-                        {uploading ? "Uploading..." : "Process"}
+                        {uploading ? "Processing..." : "Start"}
                     </Button>
                 </Box>
             </Box>
