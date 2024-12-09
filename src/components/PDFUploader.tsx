@@ -1,7 +1,7 @@
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState, ChangeEvent, DragEvent } from 'react';
 import axios from 'axios';
 import { Button, CircularProgress, Input, Container, Box, Typography } from '@mui/material';
-
+import { Paper } from '@mui/material';
 
 interface PDFUploadResponse {
     pdf_id: string;
@@ -23,14 +23,34 @@ const PDFUploader: React.FC<PDFUploaderProps> = ({ setPdfId, setPages }) => {
         }
     };
 
-    const handleUpload = async () => {
-        if (!file) {
-            alert("Please select a PDF file.");
-            return;
-        }
+    const handleDragOver = (e: DragEvent<HTMLElement>) => {
+        e.preventDefault();
+        e.stopPropagation();
+    };
 
+    const handleDrop = async (e: DragEvent<HTMLElement>) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+            const droppedFile = e.dataTransfer.files[0];
+            setFile(droppedFile);
+            await uploadFile(droppedFile);  // Directly call the upload function
+            e.dataTransfer.clearData();
+        }
+    };
+
+    const handleUpload = async () => {
+        if (file) {
+            await uploadFile(file);
+        } else {
+            alert("Please select a PDF file.");
+        }
+    };
+
+    const uploadFile = async (fileToUpload: File) => {
         const formData = new FormData();
-        formData.append('file', file);
+        formData.append('file', fileToUpload);
 
         setUploading(true);
         try {
@@ -50,13 +70,20 @@ const PDFUploader: React.FC<PDFUploaderProps> = ({ setPdfId, setPages }) => {
         <Container>
             <Box my={4} textAlign="center">
                 <Typography variant="h4" gutterBottom>
-                    Upload PDF
+                    Select PDF
                 </Typography>
                 <Input
                     type="file"
                     onChange={handleFileChange}
                     inputProps={{ accept: 'application/pdf' }}
                 />
+                <Paper
+                    onDragOver={handleDragOver}
+                    onDrop={handleDrop}
+                    sx={{ p: 3, border: '1px dashed grey', margin: '10px' }}
+                >
+                    Drag & drop here!
+                </Paper>
                 <Box my={2}>
                     <Button
                         variant="contained"
