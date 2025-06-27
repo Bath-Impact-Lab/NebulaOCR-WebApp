@@ -1,50 +1,44 @@
-# React + TypeScript + Vite
+# NebulaOCR WebApp
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+NebulaOCR is a web interface for running Optical Character Recognition on PDF files. It is built with **React**, **TypeScript** and **Vite** and communicates with a backend API to perform OCR operations.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Upload PDF documents via file picker or drag and drop.
+- Browse pages, zoom and pan to inspect the content.
+- Select a region with a crop tool to extract text from that area.
+- Optional pre‑processing: grayscale, noise reduction, thresholding, deskewing and contrast enhancement.
+- View the OCR result and copy the text to your clipboard.
 
-## Expanding the ESLint configuration
+## Getting started
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+1. Install dependencies:
+   ```bash
+   yarn install # or npm install
+   ```
+2. Create a `.env` file to point the app at your NebulaOCR API:
+   ```bash
+   REACT_APP_API_URL=http://localhost:8089
+   ```
+3. Run the development server:
+   ```bash
+   yarn dev
+   ```
 
-- Configure the top-level `parserOptions` property like this:
+Open `http://localhost:5173` in your browser to use the app.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Useful scripts
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+- `yarn dev` – start the app with hot reload.
+- `yarn build` – build the production bundle in `dist/`.
+- `yarn preview` – serve the built bundle locally.
+- `yarn lint` – run ESLint checks.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## Project structure
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+- `src/` – React components and application code.
+- `public/` – static assets like the favicon.
+- `vite.config.ts` – Vite configuration and environment variable setup.
+
+---
+This project is provided as an example interface for the Nebula OCR service.
