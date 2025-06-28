@@ -1,6 +1,9 @@
 # NebulaOCR WebApp
 
-NebulaOCR is a web interface for running Optical Character Recognition on PDF files. It is built with **React**, **TypeScript** and **Vite** and communicates with a backend API to perform OCR operations.
+NebulaOCR is a web interface for running Optical Character Recognition on PDF files.
+
+What make NebulaOCR unique is its focus on allowing users to select specific regions of a PDF page for text extraction, rather than processing the entire document. 
+This is particularly useful for extracting text from documents with columns of text, tables, or other structured data where only a portion of the page is relevant.
 
 ## Features
 
