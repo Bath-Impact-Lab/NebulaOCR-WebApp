@@ -1,4 +1,3 @@
-# NebulaOCR
 ![NebulaOCR Banner](./public/NebulaOCR.png)
 
 NebulaOCR is a web interface for running Optical Character Recognition on PDF files.
