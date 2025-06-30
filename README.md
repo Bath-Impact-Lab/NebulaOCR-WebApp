@@ -1,4 +1,4 @@
-# NebulaOCR WebApp
+# NebulaOCR
 
 NebulaOCR is a web interface for running Optical Character Recognition on PDF files.
 
